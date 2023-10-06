@@ -5,8 +5,9 @@ import users from './routes/users.js';
 import cards from './routes/cards.js';
 import { createUser, login } from './controllers/users.js';
 import { auth } from './middlewares/auth.js';
+import cors from 'cors';
 
-const { PORT = 3000 } = process.env;
+const { PORT = 4000 } = process.env;
 
 // conectar con el servidor MongoDB
 mongoose
@@ -21,6 +22,9 @@ mongoose
 // Configurar prefijos para las rutas
 const app = express();
 app.use(express.json());
+
+app.use(cors());
+app.options('*', cors());
 
 // estas dos rutas no necesitan nuestro middleware de autorización
 app.post('/signup', createUser);

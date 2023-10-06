@@ -5,10 +5,13 @@ class Api {
     this._headers = options.headers;
   }
 
-  _handleFetch(endPoint, method, body) {
+  _handleFetch(endPoint, method = 'GET', body = null, token) {
     return fetch(this._baseURL + endPoint, {
       method: method,
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        authorization: `Bearer ${token}`,
+      },
       body: body,
     }).then((res) => {
       if (res.ok) {
@@ -19,64 +22,67 @@ class Api {
     });
   }
 
-  getInitialCards() {
-    return this._handleFetch("/cards");
+  getInitialCards(token) {
+    return this._handleFetch('/cards', 'GET', null, token);
   }
 
-  getInitialUserMe() {
-    return this._handleFetch("/users/me");
+  getInitialUserMe(token) {
+    return this._handleFetch('/users/me', 'GET', null, token);
   }
 
-  setUserInfo(name, about) {
+  setUserInfo(name, about, token) {
     return this._handleFetch(
-      "/users/me",
-      "PATCH",
+      '/users/me',
+      'PATCH',
       JSON.stringify({
         name: name,
         about: about,
-      })
+      }),
+      token
     );
   }
 
-  postNewCard(name, link) {
+  postNewCard(name, link, token) {
     return this._handleFetch(
-      "/cards",
-      "POST",
+      '/cards',
+      'POST',
       JSON.stringify({
         name: name,
         link: link,
-      })
+      }),
+      token
     );
   }
 
-  deleteCard(cardId) {
-    return this._handleFetch("/cards/" + cardId, "DELETE");
+  deleteCard(cardId, token) {
+    return this._handleFetch('/cards/' + cardId, 'DELETE', token);
   }
 
-  changeLikeCardStatus(cardId, isLiked) {
+  changeLikeCardStatus(cardId, isLiked, token) {
     if (isLiked === true) {
-      return this._handleFetch("/cards/likes/" + cardId, "PUT");
+      return this._handleFetch('/cards/likes/' + cardId, 'PUT', token);
     } else {
-      return this._handleFetch("/cards/likes/" + cardId, "DELETE");
+      return this._handleFetch('/cards/likes/' + cardId, 'DELETE', token);
     }
   }
 
-  updateUserMeAvatar(avatar) {
+  updateUserMeAvatar(avatar, token) {
     return this._handleFetch(
-      "/users/me/avatar",
-      "PATCH",
+      '/users/me/avatar',
+      'PATCH',
       JSON.stringify({
         avatar: avatar,
-      })
+      }),
+      token
     );
   }
 }
 
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/web_es_cohort_03",
+  baseUrl: 'http://localhost:4000',
   headers: {
-    authorization: "361c2497-73b4-4dd1-9a02-2225ff5963b5",
-    "Content-Type": "application/json",
+    authorization: localStorage.getItem('jwt'),
+    'Content-Type': 'application/json',
   },
 });
 

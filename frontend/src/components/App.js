@@ -25,6 +25,8 @@ function App() {
   const [selectedCard, setselectedCard] = useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState('');
+  const [token, setToken] = React.useState('');
+
   const navigate = useNavigate();
 
   function handleEditAvatarClick() {
@@ -62,7 +64,7 @@ function App() {
 
     // envía una solicitud a la API para cambiar el estado de "like" de la tarjeta
     // recibe los datos actualizados de la tarjeta, actualiza el estado de las tarjetas en función de esos datos
-    api.changeLikeCardStatus(oCard._id, !isLiked).then((newCard) => {
+    api.changeLikeCardStatus(oCard._id, !isLiked, token).then((newCard) => {
       setCards((state) =>
         state.map((c) => (c._id === newCard._id ? newCard : c))
       );
@@ -70,13 +72,13 @@ function App() {
   }
 
   function handleCardDelete(oCard) {
-    api.deleteCard(oCard._id).then(() => {
+    api.deleteCard(oCard._id, token).then(() => {
       setCards((state) => state.filter((card) => card._id !== oCard._id));
     });
   }
 
   function handleUpdateUser(oInfoUser) {
-    api.setUserInfo(oInfoUser.name, oInfoUser.about).then(() => {
+    api.setUserInfo(oInfoUser.name, oInfoUser.about, token).then(() => {
       setcurrentUser({
         name: oInfoUser.name,
         about: oInfoUser.about,
@@ -88,7 +90,7 @@ function App() {
   }
 
   function handleUpdateAvatar(oAvatarUser) {
-    api.updateUserMeAvatar(oAvatarUser.avatar).then(() => {
+    api.updateUserMeAvatar(oAvatarUser.avatar, token).then(() => {
       setcurrentUser({
         avatar: oAvatarUser.avatar,
         name: currentUser.name,
@@ -100,7 +102,7 @@ function App() {
   }
 
   function handleAddPlaceSubmit(oAddPlace) {
-    api.postNewCard(oAddPlace.title, oAddPlace.url).then((newCard) => {
+    api.postNewCard(oAddPlace.title, oAddPlace.url, token).then((newCard) => {
       setCards([newCard, ...cards]);
       handleClosePopup();
     });
@@ -120,6 +122,7 @@ function App() {
     const handleTokenCheck = () => {
       if (localStorage.getItem('jwt')) {
         const jwt = localStorage.getItem('jwt');
+        setToken(jwt);
         auth
           .checkToken(jwt)
           .then((res) => {
@@ -139,21 +142,21 @@ function App() {
 
   useEffect(() => {
     api
-      .getInitialUserMe()
+      .getInitialUserMe(token)
       .then((res) => {
         setcurrentUser(res);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     api
-      .getInitialCards()
+      .getInitialCards(token)
       .then((res) => {
         setCards(res);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [token]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

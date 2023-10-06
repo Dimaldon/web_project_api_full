@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 export const getUsers = async (req, res) => {
   try {
     const usersList = await User.find();
-    return res.send({ data: usersList });
+    return res.send(usersList);
   } catch (err) {
     return res
       .status(500)
@@ -17,7 +17,7 @@ export const getUserById = async (req, res) => {
   try {
     const { userId } = req.params;
     const getUser = await User.findById(userId).orFail();
-    return res.send({ data: getUser });
+    return res.send(getUser);
   } catch (err) {
     if (err.name === 'CastError') {
       return res.status(400).send({ message: 'ID con formato incorrecto' });
@@ -47,7 +47,7 @@ export const createUser = async (req, res) => {
           password: hash,
         })
       )
-      .then((user) => res.send({ data: user }));
+      .then((user) => res.send(user));
     // return res.send({ data: newUser });
   } catch (err) {
     if (err.name === 'ValidationError') {
@@ -82,7 +82,7 @@ export const updateUser = async (req, res) => {
       { name, about },
       { new: true }
     ).orFail();
-    return res.send({ data: updatedUser });
+    return res.send(updatedUser);
   } catch (err) {
     if (err.name === 'CastError') {
       return res.status(400).send({ message: 'ID con formato incorrecto' });
@@ -106,7 +106,7 @@ export const updateAvatar = async (req, res) => {
       { avatar },
       { new: true }
     ).orFail();
-    return res.send({ data: updatedAvatar });
+    return res.send(updatedAvatar);
   } catch (err) {
     if (err.name === 'CastError') {
       return res.status(400).send({ message: 'ID con formato incorrecto' });
@@ -126,7 +126,7 @@ export const getUserInfo = async (req, res) => {
   try {
     const { _id } = req.user;
     const user = await User.findById(_id);
-    return res.send({ data: user });
+    return res.send(user);
   } catch (err) {
     return res
       .status(500)
