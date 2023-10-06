@@ -1,0 +1,13 @@
+.conent__elements-title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  width: 17.625rem;
+  height: 4.94rem;
+  border-radius: 0px 0px 10px 10px;
+  justify-content: space-between;
+  padding-left: 1.31rem;
+  padding-right: 1.13rem;
+  box-sizing: border-box;
+}

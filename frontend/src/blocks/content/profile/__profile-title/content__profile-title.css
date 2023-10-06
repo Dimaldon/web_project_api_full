@@ -1,0 +1,19 @@
+.content__profile-title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 27px;
+  text-align: center;
+  color: #ffffff;
+  margin: 0;
+  padding-right: 10px;
+}
+
+@media screen and (min-width: 940px) {
+  .content__profile-title {
+    font-size: 42px;
+    line-height: 48px;
+    text-align: left;
+  }
+}

@@ -1,0 +1,6 @@
+.overlay__form-button-disabled {
+  color: #ffffff;
+  background: #e5e5e5;
+  pointer-events: none;
+  user-select: none;
+}

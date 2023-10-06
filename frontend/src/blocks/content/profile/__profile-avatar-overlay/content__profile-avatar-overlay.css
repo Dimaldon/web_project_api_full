@@ -1,0 +1,7 @@
+.content__profile-avatar-overlay {
+  background-color: rgba(0, 0, 0, 1);
+  background-image: url(../../../../images/profile-info.svg);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 20%;
+}

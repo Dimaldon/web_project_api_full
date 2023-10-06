@@ -1,0 +1,23 @@
+.overlay__content {
+  position: relative;
+  width: 430px;
+  height: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  padding-left: 36px;
+  padding-right: 36px;
+  padding-top: 34px;
+  padding-bottom: 36px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+}
+
+@media screen and (max-width: 1279px) {
+  .overlay__content {
+    width: 242px;
+    height: auto;
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-top: 25px;
+    padding-bottom: 20px;
+  }
+}

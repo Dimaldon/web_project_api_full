@@ -1,0 +1,75 @@
+@import url(./vendor/normalize.css);
+
+@import url(./blocks/root/root.css);
+
+@import url(./blocks/header/header.css);
+@import url(./blocks/header/__logo/header__logo.css);
+@import url(./blocks/header/__link/header__link.css);
+@import url(./blocks/header/__user-info/header__user-info.css);
+@import url(./blocks/header/__email/header__email.css);
+@import url(./blocks/header/__logout/header__logout.css);
+@import url(./blocks/header/__close-icon/header__close-icon.css);
+@import url(./blocks/header/__menu-icon/header__menu-icon.css);
+@import url(./blocks/header/__opened/header__opened.css);
+@import url(./blocks/header/__user-info/_opened/header__user-info_opened.css);
+
+@import url(./blocks/infoTooltip/infoTooltip.css);
+
+@import url(./blocks/content/content.css);
+
+@import url(./blocks/content/profile/profile.css);
+@import url(./blocks/content/profile/__profile-description/content__profile-description.css);
+@import url(./blocks/content/profile/__profile-title/content__profile-title.css);
+@import url(./blocks/content/profile/__profile-image/content__profile-image.css);
+@import url(./blocks/content/profile/__profile-title-container/content__profile-title-container.css);
+@import url(./blocks/content/profile/__profile-button-add/content__profile-button-add.css);
+@import url(./blocks/content/profile/__profile-title-grup/content__profile-title-grup.css);
+@import url(./blocks/content/profile/__profile-button-edit/content__profile-button-edit.css);
+@import url(./blocks/content/profile/__profile-avatar-overlay/content__profile-avatar-overlay.css);
+
+@import url(./blocks/content/elements/elements.css);
+@import url(./blocks/content/elements/__elements-grid/content__elements-grid.css);
+@import url(./blocks/content/elements/__elements-card/content__elements-card.css);
+@import url(./blocks/content/elements/__elements-image/content__elements-image.css);
+@import url(./blocks/content/elements/__elements-title-container/conent__elements-title-container.css);
+@import url(./blocks/content/elements/__elements-title/content__elements-title.css);
+@import url(./blocks/content/elements/__elements__button-like/content__elements__button-like.css);
+@import url(./blocks/content/elements/__elements__button-like-active/content__elements__button-like-active.css);
+@import url(./blocks/content/elements/__elements__delete-button/content__elements__delete-button.css);
+@import url(./blocks/content/elements/__elements__delete-button-active/content__elements__delete-button-active.css);
+@import url(./blocks/content/elements/__elements-likes-container/content__elements-likes-container.css);
+@import url(./blocks/content/elements/__elements__numbers-like/content__elements__numbers-like.css);
+
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/footer/__text/footer__text.css);
+
+@import url(./blocks/overlay/overlay.css);
+@import url(./blocks/overlay/__form/overlay__form.css);
+@import url(./blocks/overlay/__title/overlay__title.css);
+@import url(./blocks/overlay/__title/_tooltip/overlay__title_tooltip.css);
+@import url(./blocks/overlay/__visible/overlay__visible.css);
+@import url(./blocks/overlay/__content/overlay__content.css);
+@import url(./blocks/overlay/__form-input-group/overlay__form-input-group.css);
+@import url(./blocks/overlay/__text-input/overlay__text-input.css);
+@import url(./blocks/overlay/__form-submit-button/overlay__form-submit-button.css);
+@import url(./blocks/overlay/__form-close-button/overlay__form-close-button.css);
+@import url(./blocks/overlay/__input_type_error/form__input_type_error.css);
+@import url(./blocks/overlay/__input-error_active/form__input-error_active.css);
+@import url(./blocks/overlay/__form-button-disabled/form__button-disabled.css);
+@import url(./blocks/overlay/__form-input-error/overlay__form-input-error.css);
+
+@import url(./blocks/overlay/__content-preview/overlay__content-preview.css);
+@import url(./blocks/overlay/__preview-image/overlay__preview-image.css);
+@import url(./blocks/overlay/__figure/overlay__figure.css);
+@import url(./blocks/overlay/__preview-caption/overlay__preview-caption.css);
+
+@import url(./blocks/login/login.css);
+
+@import url(./blocks/register/register.css);
+
+@import url(./blocks/form/form.css);
+@import url(./blocks/form/__title/form__title.css);
+@import url(./blocks/form/__label/form__label.css);
+@import url(./blocks/form/__input/form__input.css);
+@import url(./blocks/form/__button/form__button.css);
+@import url(./blocks/form/__link/form__link.css);

@@ -1,0 +1,37 @@
+.overlay__form-submit-button {
+  border: none;
+  width: 358px;
+  height: 50.15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 48px;
+  border-radius: 2px;
+  background-color: #000;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.overlay__form-submit-button:active {
+  opacity: 0.8;
+}
+
+.overlay__form-submit-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+@media screen and (max-width: 1279px) {
+  .overlay__form-submit-button {
+    width: 238px;
+    height: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 46px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

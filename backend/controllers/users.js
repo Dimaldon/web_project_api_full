@@ -61,7 +61,7 @@ export const createUser = async (req, res) => {
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
-  return User.findUserByCredentials(email, password)
+  return User.findUserByCredentials(email, password) //Aquí nos quedamos.
     .then((user) => {
       res.send({
         token: jwt.sign({ _id: user._id }, 'dev-secret', {

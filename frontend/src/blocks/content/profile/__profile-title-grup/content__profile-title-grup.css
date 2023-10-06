@@ -1,0 +1,11 @@
+.content__profile-title-grup {
+  display: flex;
+  flex-direction: column;
+  padding-top: 26px;
+}
+
+@media screen and (min-width: 940px) {
+  .content__profile-title-grup {
+    flex: 1;
+  }
+}

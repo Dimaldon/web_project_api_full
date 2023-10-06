@@ -1,0 +1,5 @@
+.content__elements-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

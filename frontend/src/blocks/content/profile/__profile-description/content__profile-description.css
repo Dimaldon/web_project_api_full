@@ -1,0 +1,18 @@
+.content__profile-description {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #ffffff;
+  margin: 0;
+  padding-top: 0.875rem;
+  padding-bottom: 2.25rem;
+}
+
+@media screen and (min-width: 940px) {
+  .content__profile-description {
+    text-align: left;
+  }
+}

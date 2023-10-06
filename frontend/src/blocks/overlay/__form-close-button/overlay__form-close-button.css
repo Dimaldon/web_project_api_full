@@ -1,0 +1,19 @@
+.overlay__form-close-button {
+  position: absolute;
+  background: transparent;
+  background-image: url(../../../images/close-button.svg);
+  background-repeat: no-repeat;
+  top: -40px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1279px) {
+  .overlay__form-close-button {
+    right: -16px;
+    background-image: url(../../../images/close-button-chico.svg);
+  }
+}

@@ -1,0 +1,19 @@
+.overlay__title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  margin: 0;
+  padding-bottom: 54px;
+}
+
+@media screen and (max-width: 1280px) {
+  .overlay__title {
+    font-size: 18px;
+    line-height: 22px;
+    padding-top: 0;
+    padding-bottom: 76px;
+  }
+}

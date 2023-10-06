@@ -1,0 +1,15 @@
+.content__elements-grid {
+  display: grid;
+  row-gap: 20px;
+  justify-content: center;
+}
+
+@media screen and (min-width: 940px) {
+  .content__elements-grid {
+    width: 880px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 auto;
+    row-gap: 17px;
+    column-gap: 21px;
+  }
+}
