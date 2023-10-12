@@ -55,7 +55,7 @@ class Api {
   }
 
   deleteCard(cardId, token) {
-    return this._handleFetch('/cards/' + cardId, 'DELETE', token);
+    return this._handleFetch('/cards/' + cardId, 'DELETE', null, token);
   }
 
   changeLikeCardStatus(cardId, isLiked, token) {
