@@ -2,38 +2,26 @@ import User from '../models/user.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-export const getUsers = async (req, res) => {
+export const getUsers = async (req, res, next) => {
   try {
     const usersList = await User.find();
     return res.send(usersList);
   } catch (err) {
-    return res
-      .status(500)
-      .send({ message: 'Ha ocurrido un error en el servidor A' });
+    return next(err);
   }
 };
 
-export const getUserById = async (req, res) => {
+export const getUserById = async (req, res, next) => {
   try {
     const { userId } = req.params;
     const getUser = await User.findById(userId).orFail();
     return res.send(getUser);
   } catch (err) {
-    if (err.name === 'CastError') {
-      return res.status(400).send({ message: 'ID con formato incorrecto' });
-    }
-    if (err.name === 'DocumentNotFoundError') {
-      return res
-        .status(404)
-        .send({ message: 'No se ha encontrado un usuario con ese ID' });
-    }
-    return res
-      .status(500)
-      .send({ message: 'Ha ocurrido un error en el servidor I' });
+    return next(err);
   }
 };
 
-export const createUser = async (req, res) => {
+export const createUser = async (req, res, next) => {
   try {
     const { name, about, avatar, email, password } = req.body;
     bcrypt
@@ -48,14 +36,8 @@ export const createUser = async (req, res) => {
         })
       )
       .then((user) => res.send(user));
-    // return res.send({ data: newUser });
   } catch (err) {
-    if (err.name === 'ValidationError') {
-      return res.status(400).send({ message: 'Se pasaron datos incorrectos' });
-    }
-    return res
-      .status(500)
-      .send({ message: 'Ha ocurrido un error en el servidor P' });
+    return next(err);
   }
 };
 
@@ -74,7 +56,7 @@ export const login = async (req, res) => {
     });
 };
 
-export const updateUser = async (req, res) => {
+export const updateUser = async (req, res, next) => {
   try {
     const { name, about } = req.body;
     const updatedUser = await User.findByIdAndUpdate(
@@ -84,21 +66,11 @@ export const updateUser = async (req, res) => {
     ).orFail();
     return res.send(updatedUser);
   } catch (err) {
-    if (err.name === 'CastError') {
-      return res.status(400).send({ message: 'ID con formato incorrecto' });
-    }
-    if (err.name === 'DocumentNotFoundError') {
-      return res
-        .status(404)
-        .send({ message: 'No se ha encontrado un usuario con ese ID' });
-    }
-    return res
-      .status(500)
-      .send({ message: 'Ha ocurrido un error en el servidor' });
+    return next(err);
   }
 };
 
-export const updateAvatar = async (req, res) => {
+export const updateAvatar = async (req, res, next) => {
   try {
     const { avatar } = req.body;
     const updatedAvatar = await User.findByIdAndUpdate(
@@ -108,28 +80,16 @@ export const updateAvatar = async (req, res) => {
     ).orFail();
     return res.send(updatedAvatar);
   } catch (err) {
-    if (err.name === 'CastError') {
-      return res.status(400).send({ message: 'ID con formato incorrecto' });
-    }
-    if (err.name === 'DocumentNotFoundError') {
-      return res
-        .status(404)
-        .send({ message: 'No se ha encontrado un usuario con ese ID' });
-    }
-    return res
-      .status(500)
-      .send({ message: 'Ha ocurrido un error en el servidor' });
+    return next(err);
   }
 };
 
-export const getUserInfo = async (req, res) => {
+export const getUserInfo = async (req, res, next) => {
   try {
     const { _id } = req.user;
     const user = await User.findById(_id);
     return res.send(user);
   } catch (err) {
-    return res
-      .status(500)
-      .send({ message: 'Ha ocurrido un error en el servidor A' });
+    return next(err);
   }
 };

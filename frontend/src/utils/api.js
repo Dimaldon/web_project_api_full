@@ -60,9 +60,19 @@ class Api {
 
   changeLikeCardStatus(cardId, isLiked, token) {
     if (isLiked === true) {
-      return this._handleFetch('/cards/likes/' + cardId, 'PUT', token);
+      return this._handleFetch(
+        '/cards/' + cardId + '/likes',
+        'PUT',
+        null,
+        token
+      );
     } else {
-      return this._handleFetch('/cards/likes/' + cardId, 'DELETE', token);
+      return this._handleFetch(
+        '/cards/' + cardId + '/likes',
+        'DELETE',
+        null,
+        token
+      );
     }
   }
 

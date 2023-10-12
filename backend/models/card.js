@@ -12,7 +12,8 @@ const cardSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(value) {
-        const regex = /^(https?:\/\/)?([\da-z.-]+\.[a-z.]{2,6}|[\d.]+)([/:?=&#]{1}[\da-z.-]+)*[/?]?$/;
+        const regex =
+          /^(http|https):\/\/(www\.)?[\w.~:/?%#[\]@!$&'()*+,;=-]+[#]?$/;
         return regex.test(value);
       },
       message: (props) => `${props.value} no es una URL válida!`,
