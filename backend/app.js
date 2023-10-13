@@ -6,6 +6,7 @@ import cards from './routes/cards.js';
 import { createUser, login } from './controllers/users.js';
 import { auth } from './middlewares/auth.js';
 import cors from 'cors';
+import { celebrate, Joi, errors } from 'celebrate';
 
 const { PORT = 4000 } = process.env;
 
@@ -27,8 +28,27 @@ app.use(cors());
 app.options('*', cors());
 
 // estas dos rutas no necesitan nuestro middleware de autorización
-app.post('/signup', createUser);
-app.post('/signin', login);
+app.post(
+  '/signup',
+  celebrate({
+    body: Joi.object().keys({
+      email: Joi.string().required().email(),
+      password: Joi.string().required().min(8),
+    }),
+  }),
+  createUser
+);
+
+app.post(
+  '/signin',
+  celebrate({
+    body: Joi.object().keys({
+      email: Joi.string().required().email(),
+      password: Joi.string().required().min(8),
+    }),
+  }),
+  login
+);
 
 // autorización
 app.use(auth);
@@ -36,6 +56,8 @@ app.use(auth);
 // estas rutas necesitan autorización
 app.use('/users', users);
 app.use('/cards', cards);
+
+app.use(errors());
 
 // Manejar errores del servidor
 app.get('/', (req, res) => {
