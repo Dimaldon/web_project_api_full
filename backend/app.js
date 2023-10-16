@@ -7,6 +7,7 @@ import { createUser, login } from './controllers/users.js';
 import { auth } from './middlewares/auth.js';
 import cors from 'cors';
 import { celebrate, Joi, errors } from 'celebrate';
+import { requestLogger, errorLogger } from './middlewares/loggers.js';
 
 const { PORT = 4000 } = process.env;
 
@@ -26,6 +27,14 @@ app.use(express.json());
 
 app.use(cors());
 app.options('*', cors());
+
+app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('El servidor va a caer');
+  }, 0);
+});
 
 // estas dos rutas no necesitan nuestro middleware de autorización
 app.post(
@@ -56,6 +65,8 @@ app.use(auth);
 // estas rutas necesitan autorización
 app.use('/users', users);
 app.use('/cards', cards);
+
+app.use(errorLogger);
 
 app.use(errors());
 
@@ -88,6 +99,7 @@ app.use((err, req, res, next) => {
         'Al registrarse, se especificó un correo electrónico que ya existe en el servidor',
     });
   }
+  console.log(err);
   res.status(500).send({ message: 'Se ha producido un error en el servidor' });
 });
 
