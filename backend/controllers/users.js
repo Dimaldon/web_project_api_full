@@ -1,6 +1,7 @@
 import User from '../models/user.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 export const getUsers = async (req, res, next) => {
   try {
@@ -46,9 +47,13 @@ export const login = async (req, res) => {
   return User.findUserByCredentials(email, password) //Aquí nos quedamos.
     .then((user) => {
       res.send({
-        token: jwt.sign({ _id: user._id }, 'dev-secret', {
-          expiresIn: '7d',
-        }),
+        token: jwt.sign(
+          { _id: user._id },
+          NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+          {
+            expiresIn: '7d',
+          }
+        ),
       });
     })
     .catch((err) => {
