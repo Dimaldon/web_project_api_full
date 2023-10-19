@@ -139,6 +139,7 @@ function App() {
   }, [loggedIn, navigate]);
 
   useEffect(() => {
+    if (!token) return;
     api
       .getInitialUserMe(token)
       .then((res) => {
@@ -148,6 +149,7 @@ function App() {
   }, [token]);
 
   useEffect(() => {
+    if (!token) return;
     api
       .getInitialCards(token)
       .then((res) => {
