@@ -17,7 +17,7 @@ Proyecto integrador que aprovecha el código más reciente desarrollado en React
 - Babel
 - Google Cloud
 
-# Acceso a la aplicación: 
+# Acceso a la aplicación:
 
 - Frontend: [https://www.julianjnv85.mooo.com](https://www.julianjnv85.mooo.com)
 - Backend: [https://api.julianjnv85.mooo.com](api.julianjnv85.mooo.com)
