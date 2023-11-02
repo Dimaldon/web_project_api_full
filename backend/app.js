@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
+import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
+import { celebrate, Joi, errors } from 'celebrate';
 import users from './routes/users.js';
 import cards from './routes/cards.js';
 import { createUser, login } from './controllers/users.js';
-import { auth } from './middlewares/auth.js';
-import cors from 'cors';
-import { celebrate, Joi, errors } from 'celebrate';
+import auth from './middlewares/auth.js';
 import { requestLogger, errorLogger } from './middlewares/loggers.js';
 
 const { PORT = 4000 } = process.env;
@@ -48,7 +48,7 @@ app.post(
       password: Joi.string().required().min(8),
     }),
   }),
-  createUser
+  createUser,
 );
 
 app.post(
@@ -59,7 +59,7 @@ app.post(
       password: Joi.string().required().min(8),
     }),
   }),
-  login
+  login,
 );
 
 // autorización

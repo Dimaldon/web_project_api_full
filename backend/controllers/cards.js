@@ -41,7 +41,7 @@ export const likeCard = async (req, res, next) => {
     const likedCard = await Card.findByIdAndUpdate(
       cardId,
       { $addToSet: { likes: req.user._id } },
-      { new: true }
+      { new: true },
     ).orFail();
     return res.send(likedCard);
   } catch (err) {
@@ -55,7 +55,7 @@ export const dislikeCard = async (req, res, next) => {
     const dislikedCard = await Card.findByIdAndUpdate(
       cardId,
       { $pull: { likes: req.user._id } },
-      { new: true }
+      { new: true },
     ).orFail();
     return res.send(dislikedCard);
   } catch (err) {

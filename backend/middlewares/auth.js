@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const handleAuthError = (res) => {
@@ -7,8 +8,7 @@ const handleAuthError = (res) => {
 
 const extractBearerToken = (header) => header.replace('Bearer ', '');
 
-// eslint-disable-next-line consistent-return
-export const auth = (req, res, next) => {
+export default (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization || !authorization.startsWith('Bearer ')) {
@@ -21,7 +21,7 @@ export const auth = (req, res, next) => {
   try {
     payload = jwt.verify(
       token,
-      NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret'
+      NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
     );
   } catch (err) {
     return handleAuthError(res);

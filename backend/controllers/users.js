@@ -1,6 +1,7 @@
-import User from '../models/user.js';
-import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import User from '../models/user.js';
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 export const getUsers = async (req, res, next) => {
@@ -24,18 +25,18 @@ export const getUserById = async (req, res, next) => {
 
 export const createUser = async (req, res, next) => {
   try {
-    const { name, about, avatar, email, password } = req.body;
+    const {
+      name, about, avatar, email, password,
+    } = req.body;
     bcrypt
       .hash(password, 10)
-      .then((hash) =>
-        User.create({
-          name,
-          about,
-          avatar,
-          email,
-          password: hash,
-        })
-      )
+      .then((hash) => User.create({
+        name,
+        about,
+        avatar,
+        email,
+        password: hash,
+      }))
       .then((user) => res.send(user));
   } catch (err) {
     return next(err);
@@ -44,7 +45,7 @@ export const createUser = async (req, res, next) => {
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
-  return User.findUserByCredentials(email, password) //Aquí nos quedamos.
+  return User.findUserByCredentials(email, password)
     .then((user) => {
       res.send({
         token: jwt.sign(
@@ -52,7 +53,7 @@ export const login = async (req, res) => {
           NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
           {
             expiresIn: '7d',
-          }
+          },
         ),
       });
     })
@@ -67,7 +68,7 @@ export const updateUser = async (req, res, next) => {
     const updatedUser = await User.findByIdAndUpdate(
       req.user._id,
       { name, about },
-      { new: true }
+      { new: true },
     ).orFail();
     return res.send(updatedUser);
   } catch (err) {
@@ -81,7 +82,7 @@ export const updateAvatar = async (req, res, next) => {
     const updatedAvatar = await User.findByIdAndUpdate(
       req.user._id,
       { avatar },
-      { new: true }
+      { new: true },
     ).orFail();
     return res.send(updatedAvatar);
   } catch (err) {
