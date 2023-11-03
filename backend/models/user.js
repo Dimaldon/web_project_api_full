@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
       'https://practicum-content.s3.us-west-1.amazonaws.com/resources/moved_avatar_1604080799.jpg',
     validate: {
       validator(value) {
-        const regex = /^(https?:\/\/)?([\da-z.-]+\.[a-z.]{2,6}|[\d.]+)([/:?=&#]{1}[\da-z.-]+)*[/?]?$/;
+        const regex = /(?:(?:https?:\/\/))[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,4}\b(?:[-a-zA-Z0-9@:%_+.~#?&/=]*(\.jpg|\.png|\.jpeg))/;
         return regex.test(value);
       },
       message: (props) => `${props.value} no es una URL válida!`,
